@@ -17,6 +17,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import tw.edu.pu.csim.s1131212.lotto2.ui.theme.Lotto2Theme
 
+import androidx.compose.runtime.getValue // 引入 getValue
+import androidx.compose.runtime.mutableStateOf // 引入 mutableStateOf
+import androidx.compose.runtime.remember // 引入 remember
+import androidx.compose.runtime.setValue // 引入 setValue
+
+
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +41,12 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Play(modifier: Modifier = Modifier) {
-    var lucky = (1..100).random()
+//    var lucky = (1..100).random()
+    var lucky by remember {
+        mutableStateOf(
+            (1..100).random()
+        )
+    }
 
     Column (modifier = modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
